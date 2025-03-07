@@ -1,28 +1,28 @@
 #ifndef CONNECTIONBASE_H
 #define CONNECTIONBASE_H
+#include <time.h>
 
 namespace databaseConnection
 {
     typedef enum
     {
         MYSQL,
-        ORACLE,
-        POSTGRESQL,
-        SQLITE
+        REDIS
     } ConnectionType;
     
     class ConnectionBase
     {
     public:
+        ConnectionBase();
+        virtual ~ConnectionBase();
         virtual void connect() = 0;
         virtual void disconnect() = 0;
         virtual void query() = 0;
         virtual void update() = 0;
-        virtual bool isConnected() = 0;
-        void getUnusedTime();
-        void refreshUnusedTime();
+        time_t getUnusedTime();
+        void refreshLastUsedTime();
     private:
-        long unusedTime;
+        time_t lastUsedTime;
     };
 } // namespace databaseConnection
 

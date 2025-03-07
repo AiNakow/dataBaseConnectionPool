@@ -18,5 +18,8 @@ foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_BINARY_DIR}/lib/${OUTPUTCONFIG}")
 endforeach()
 
+include_directories(/usr/include/mysql)
+set(mysqlclient_LIBRARIES, "/lib/x86_64-linux-gnu/libmysqlclient.a")
 add_executable(DatabaseConnectionPool main.cpp)
+target_link_libraries(DatabaseConnectionPool ${mysqlclient_LIBRARIES})
 
