@@ -71,6 +71,8 @@ namespace database
         {
             return std::make_shared<MySQLDBConnection>(host, user, password, database, port);
         }
+
+        MySQLDBConnectionFactory() = delete;
     private:
         std::string host;
         std::string user;
